@@ -7,8 +7,6 @@ This repository contains a **standalone, reproducible dashboard** analyzing fact
 
 The analysis uses **ClaimReview data retrieved via the Google Fact Check Tools API** and applies a narrative taxonomy to identify **fraud-oriented misinformation patterns** across regulatory contexts.
 
-
-
 ## Why This Project Matters
 
 Public discourse often treats weight-loss misinformation as a problem of scientific misunderstanding.
@@ -25,8 +23,6 @@ Rather than confusion about approved medications, misinformation clusters around
 
 This dashboard reframes weight-loss misinformation as a **commercial fraud surveillance problem**, not only a belief-correction challenge.
 
-
-
 ## What This Dashboard Shows
 
 - **Normalized fact-check ratings** (true, false, misleading, other)
@@ -37,8 +33,6 @@ This dashboard reframes weight-loss misinformation as a **commercial fraud surve
 - **Searchable table** of fact-checked claims with source links
 
 All outputs are derived from **fact-checked content**, not raw social media posts.
-
-
 
 ## Data Source
 
@@ -54,7 +48,6 @@ All outputs are derived from **fact-checked content**, not raw social media post
 
 **Timeframe:** January 1, 2019 – December 31, 2025
 
-
 ## Methodological Notes
 
 - Each row represents a **ClaimReview entry**, not exposure or prevalence.
@@ -67,5 +60,4 @@ All outputs are derived from **fact-checked content**, not raw social media post
 
 
 
-## Repository Structure
 

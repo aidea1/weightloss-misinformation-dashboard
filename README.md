@@ -58,6 +58,8 @@ All outputs are derived from **fact-checked content**, not raw social media post
   - Fact-check ratings
 - This project does **not** estimate misinformation reach or audience size.
 
+## **Check Dashboard: https://aidea1.github.io/weightloss-misinformation-dashboard/**
+
 ## Citation: Data source: Google Fact Check Tools API, ClaimReview
 Analysis & visualization: Akshaya Bhagavathula, 2026
 

@@ -1,4 +1,4 @@
-**Weight-Loss Misinformation Dashboard (2019–2025)**
+##**Weight-Loss Misinformation Dashboard (2019–2025)**
 
 This repository contains a **standalone, reproducible dashboard** analyzing fact-checked misinformation related to weight-loss interventions from **2019 to 2025**, with a focus on:
 
@@ -58,6 +58,6 @@ All outputs are derived from **fact-checked content**, not raw social media post
   - Fact-check ratings
 - This project does **not** estimate misinformation reach or audience size.
 
-
-
+##Citation: Data source: Google Fact Check Tools API, ClaimReview
+Analysis & visualization: Akshaya Bhagavathula, 2026
 

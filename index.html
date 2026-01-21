@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Weight-Loss Misinformation (2019–2025)</title>
+
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:20px;background:#f7f9fc}
+h1{margin-bottom:5px}
+.small{color:#555;font-size:13px}
+.card{background:#fff;padding:15px;border-radius:8px;margin-bottom:15px}
+.chart{height:350px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid #ddd;padding:8px;vertical-align:top}
+th{text-align:left;background:#fafafa}
+.false{color:#c0392b;font-weight:bold}
+.true{color:#2e7d32;font-weight:bold}
+.other{color:#f39c12;font-weight:bold}
+</style>
+</head>
+
+<body>
+
+<h1>Weight-Loss Misinformation (Fact-Checked Claims, 2019–2025)</h1>
+<div class="small">
+Source: Google Fact Check Tools API (ClaimReview).  
+This dashboard summarizes fact-checked claims and does not measure exposure or prevalence.
+</div>
+
+<div class="card">
+<select id="dataset">
+  <option value="data/glp1.csv">GLP-1 / Ozempic ecosystem</option>
+  <option value="data/supplements.csv">Weight-loss supplements</option>
+</select>
+</div>
+
+<div class="card">
+<div id="ratings" class="chart"></div>
+</div>
+
+<div class="card">
+<div id="narratives" class="chart"></div>
+</div>
+
+<div class="card">
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Claim</th>
+<th>Rating</th>
+<th>Publisher</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+
+<script>
+function loadCSV(path){
+  Papa.parse(path,{
+    download:true,
+    header:true,
+    complete: res => render(res.data)
+  })
+}
+
+function render(data){
+  const ratings = {}
+  const narratives = {}
+  const rows = document.getElementById("rows")
+  rows.innerHTML = ""
+
+  data.forEach(d=>{
+    const r = (d.rating_normalized||"other").toLowerCase()
+    ratings[r]=(ratings[r]||0)+1
+
+    if(r==="false" && d.narrative_tags){
+      d.narrative_tags.split("|").forEach(t=>{
+        narratives[t]=(narratives[t]||0)+1
+      })
+    }
+
+    const tr=document.createElement("tr")
+    tr.innerHTML=`
+      <td>${d.query||""}</td>
+      <td>${d.claim_text||""}</td>
+      <td class="${r}">${r}</td>
+      <td>${d.review_publisher||""}</td>
+      <td>${d.review_url?`<a href="${d.review_url}" target="_blank">link</a>`:""}</td>`
+    rows.appendChild(tr)
+  })
+
+  Plotly.newPlot("ratings",[{
+    x:Object.keys(ratings),
+    y:Object.values(ratings),
+    type:"bar"
+  }],{title:"Ratings distribution"})
+
+  Plotly.newPlot("narratives",[{
+    x:Object.values(narratives),
+    y:Object.keys(narratives),
+    type:"bar",
+    orientation:"h"
+  }],{title:"Top false narratives",margin:{l:200}})
+}
+
+document.getElementById("dataset").addEventListener("change",e=>{
+  loadCSV(e.target.value)
+})
+
+loadCSV("data/glp1.csv")
+</script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-##**Weight-Loss Misinformation Dashboard (2019–2025)**
+## **Weight-Loss Misinformation Dashboard (2019–2025)**
 
 This repository contains a **standalone, reproducible dashboard** analyzing fact-checked misinformation related to weight-loss interventions from **2019 to 2025**, with a focus on:
 
